@@ -1,0 +1,83 @@
+---
+title: "Most Marketing Dashboards Answer Questions Nobody Asked"
+date: "2026-07-14"
+topic: "Analytics"
+excerpt: "Dashboards get built from the data outwards, when they should be built from the decision backwards. Here is what changes when you invert it."
+---
+
+I have built, inherited and quietly decommissioned a lot of marketing dashboards. The pattern is consistent enough to state plainly: **most dashboards are built from the available data outwards, when they should be built from the decision backwards.**
+
+That single inversion is the difference between a dashboard people open every Monday and a dashboard that gets bookmarked once, screenshotted for a board deck, and abandoned.
+
+## How the wrong one gets built
+
+The request arrives as "we need visibility on marketing performance". Reasonable. Nobody can argue with visibility.
+
+So whoever owns the data starts from what exists. Spend by channel is available, so it goes on. Impressions, clicks, CTR, CPC — available, so they go on. Sessions, bounce rate, conversion rate. Email opens. Follower counts. Everything gets a tile, because leaving out something measurable feels like negligence.
+
+The result is technically impressive and decisionally useless. Forty tiles, all accurate, none of which tell you what to do differently tomorrow. It answers "what happened" comprehensively and "what should we change" not at all.
+
+Then the real killer: because nobody is sure which tiles matter, nobody notices when one breaks. I have found dashboards running on a broken data source for months, still being screenshotted into monthly reviews.
+
+## Start from the decision
+
+The question I ask instead is not "what do you want to see". It is:
+
+> What decision do you make repeatedly, on a known cadence, that you currently make on instinct?
+
+That question is much harder to answer, and the difficulty is the point. It forces specificity. Real answers sound like:
+
+- "Every month I decide whether to shift budget between paid social and search."
+- "Every quarter I decide which two markets get incremental investment."
+- "Every sprint I decide whether the last campaign is worth repeating."
+
+Each of those implies a very small set of numbers. The budget-shift decision needs marginal return by channel at current spend levels — not CTR, not impressions, not follower growth. Three or four numbers, and it is genuinely decidable.
+
+Build that. Then the next decision. A dashboard assembled this way tends to have six to ten tiles and gets used, because every tile is load-bearing for a decision someone actually owns.
+
+## The three tests I apply to every tile
+
+Before anything goes on a dashboard I now ask three questions. Anything failing all three comes off.
+
+**1. What decision does this change?**
+If a number moves 20% in either direction and nobody does anything differently, it is not a metric. It is trivia. Keep it in a database if you like, but it does not belong on the dashboard competing for attention.
+
+**2. Who is accountable for it?**
+Every number needs a name attached. Unowned metrics get watched by everyone and acted on by no one — the diffusion of responsibility, rendered in charts.
+
+**3. What is the expected value?**
+This is the one most teams skip, and it is the most important. A number without a reference point cannot be interpreted. Is a 3.2% conversion rate good? Nobody can say, including the person who built the tile. Every metric needs a target, a benchmark, or a prior period on the same view. Otherwise the dashboard is a random number generator with good typography.
+
+That third test alone eliminates most tiles on most dashboards.
+
+## Design for the glance, not the analyst
+
+Two people use a marketing dashboard, and they need different things.
+
+The **analyst** wants to explore, slice, and find causes. Give them the warehouse and good tooling. They do not need a dashboard; they need query access and clean tables.
+
+The **decision-maker** has ninety seconds. They need to know whether things are on track and where to look if not. That is a fundamentally different artefact, and trying to serve both in one view produces something that serves neither.
+
+Practically, for the decision-maker view: state the direction of travel against expectation, on every tile, in plain language. "Retention 41%, target 45%, down 2pts on last month" is instantly actionable. A sparkline with no reference line is not.
+
+I also strongly favour fewer time granularities. Most marketing decisions are made weekly or monthly. Offering daily, weekly, monthly, quarterly and yearly toggles mostly generates noise-driven panic about daily variance that means nothing.
+
+## Leading and lagging, kept apart
+
+One structural thing that has consistently helped: separate the two categories visually and do not average them together.
+
+**Lagging metrics** — revenue, retention, CAC, LTV — tell you whether the strategy is working. They are what leadership is accountable for, they are slow, and you cannot act on them directly. Nobody has ever fixed retention by looking at retention.
+
+**Leading metrics** — activation rate, time to first value, lifecycle flow conversion, pipeline velocity — tell you whether this month's work will move the lagging ones. They are what the team acts on daily.
+
+Teams that mix these on one view end up either optimising leading indicators that turn out not to drive anything, or staring at lagging metrics they cannot influence. Two sections, clearly labelled, with the leading metrics explicitly mapped to the lagging one they are supposed to move. If a leading metric cannot be mapped, it is a candidate for deletion.
+
+## The deletion habit
+
+The most valuable dashboard practice I know is quarterly deletion.
+
+Every quarter, look at what has actually been used — most tools will tell you — and remove anything nobody has opened. Not archive. Remove. Anything genuinely needed will be rebuilt in an hour, and asking for it is useful signal in itself.
+
+Dashboards accrete. Every new campaign type, every reorg, every curious executive adds tiles, and nothing ever gets taken away, because removal feels like losing information. So the signal-to-noise ratio degrades monotonically until the whole thing is ignored and someone commissions a replacement, starting the cycle again.
+
+A dashboard is not a record of everything you can measure. It is an instrument for a small number of recurring decisions. Build it backwards from those decisions, put a target on every number, and delete without sentiment.

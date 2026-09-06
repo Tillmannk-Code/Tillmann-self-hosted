@@ -1,0 +1,204 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+
+@theme inline {
+  --font-sans: var(--font-geist), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+}
+
+:root {
+  color-scheme: dark;
+
+  /* near-black canvas */
+  --background: #08090a;
+  /* raised surface / alternating bands */
+  --surface: #121417;
+  /* off-white */
+  --foreground: #f2f4f3;
+  /* signal vermilion red — the only accent */
+  --accent: #ff412e;
+  --accent-foreground: #f2f4f3;
+
+  --card: #121417;
+  --card-foreground: #f2f4f3;
+  --popover: #121417;
+  --popover-foreground: #f2f4f3;
+
+  --primary: #ff412e;
+  --primary-foreground: #f2f4f3;
+  --secondary: #1a1d21;
+  --secondary-foreground: #f2f4f3;
+
+  --muted: #1a1d21;
+  --muted-foreground: #8a9299;
+
+  /* deep crimson so errors stay distinct from the vermilion accent */
+  --destructive: #d61f4b;
+
+  --border: color-mix(in oklab, #f2f4f3 11%, transparent);
+  --input: color-mix(in oklab, #f2f4f3 16%, transparent);
+  --ring: #ff412e;
+
+  --radius: 0.125rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background-color: var(--accent);
+    color: var(--accent-foreground);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+}
+
+/*
+ * Named without a `text-` prefix so tailwind-merge does not treat these as
+ * conflicting with text-color / text-size utilities and drop one of them.
+ */
+
+/* Oversized display type: tight, geometric, brutal at scale */
+@utility display {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  line-height: 0.88;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+}
+
+/* Mono eyebrow / metadata label */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  line-height: 1;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Nav + CTA label: Geist, uppercase, tight tracking */
+@utility navlabel {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.75rem;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Hairline structural rules */
+@utility rule-t {
+  border-top: 1px solid var(--border);
+}
+
+@utility rule-b {
+  border-bottom: 1px solid var(--border);
+}
+
+/*
+ * Marquee. The track holds the item list twice, so translating it by exactly
+ * -50% lands the second copy where the first began — a seamless loop with no
+ * visible jump at the wrap point.
+ */
+@keyframes marquee-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/*
+ * Fades the rows out at both edges so items don't pop in mid-air. The fade
+ * width is a variable because a fixed 8rem would consume most of a 390px
+ * phone screen — the component widens it from md upwards.
+ */
+@utility marquee-mask {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black var(--marquee-fade, 2.5rem),
+    black calc(100% - var(--marquee-fade, 2.5rem)),
+    transparent 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /*
+   * The rule above would freeze the marquee mid-translate, hiding half the
+   * brands. Stop the animation outright and let the track wrap into a static,
+   * centred wall instead — every name stays visible.
+   */
+  [data-marquee-track] {
+    animation: none !important;
+    transform: none !important;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* With the track static, the second copy would just be duplicate names. */
+  [data-marquee-dupe] {
+    display: none !important;
+  }
+
+  .marquee-mask {
+    mask-image: none;
+  }
+}

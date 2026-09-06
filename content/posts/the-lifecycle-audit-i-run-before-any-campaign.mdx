@@ -1,0 +1,86 @@
+---
+title: "The Lifecycle Audit I Run Before Touching Any Campaign"
+date: "2026-04-15"
+topic: "CRM"
+excerpt: "A repeatable five-day diagnostic for finding out where customer value is actually leaking — before anyone briefs another campaign or buys another tool."
+---
+
+When a company brings me in for CRM work, the request is almost always a campaign. Re-engagement push. Better onboarding. Something for the lapsed segment.
+
+I do not start there. I run an audit first, and it takes about five days.
+
+This is not consultant stalling. It is because roughly half the time the campaign that was requested is not the campaign that is needed, and building the requested one would have cost six weeks to learn that. The audit is the cheapest way to find out where value is actually leaking.
+
+Here is the whole thing, in the order I run it.
+
+## Day 1 — Map the lifecycle as it exists
+
+Not as it is documented. As it exists.
+
+I get a list of every automated message a customer can receive, with its trigger, its owner, and when it was last edited. Every channel: email, push, in-app, SMS, direct mail if that is still in play.
+
+Three things reliably surface:
+
+- **Orphaned flows.** Messages still sending, built by someone who left, that nobody has looked at in two years. I have found flows referencing discontinued products, expired offers, and one welcome series congratulating people on joining a programme that had been shut down eleven months earlier.
+- **Collision points.** Places where a customer can plausibly receive three or four messages in a day because separate flows trigger on overlapping conditions and nobody owns global frequency.
+- **Cliffs.** Long stretches of the customer journey with no automated communication at all. Usually somewhere between "onboarded" and "loyal", which is precisely where the value is.
+
+The cliffs are the finding. But you cannot see them without the full map.
+
+## Day 2 — Follow the data backwards
+
+Now I check whether the CRM can actually see what a customer does.
+
+I pick one specific, valuable customer behaviour — second purchase, feature adoption, subscription upgrade — and I trace it backwards from the report to the source. Who emits the event? How does it reach the CRM? What is the latency? What is the failure mode when it breaks, and would anyone notice?
+
+The typical finding is that the important behaviours are **visible in analytics but not available in the CRM**. The dashboard knows a customer adopted a key feature. The messaging platform does not, or knows it eleven hours later, which for a trigger is the same as not knowing.
+
+This is where a lot of "our CRM is underperforming" turns out to mean "our CRM is flying blind". No campaign fixes that.
+
+## Day 3 — Read the actual messages
+
+I sit down and read every live message end to end, on a phone, as a customer.
+
+This sounds trivial. It is consistently the most uncomfortable day of the audit, because it is where you find:
+
+- Placeholder text in production
+- Broken personalisation, the classic "Hi FIRSTNAME"
+- Tone that shifts wildly between flows because six different people wrote them across four years
+- Links to pages that no longer exist
+- Localisation that was clearly machine-translated once and never reviewed by a speaker
+
+Working across English, French and German markets, I will say the localisation issue is almost universal. The English is polished because leadership reads it. The others were translated in a rush at launch and have never been touched since — while carrying real revenue.
+
+## Day 4 — Find the actual numbers
+
+Now, and only now, performance data. I want three things per flow:
+
+1. **Volume.** How many customers enter, per month.
+2. **Conversion to the intended behaviour.** Not opens. Not clicks. The thing the flow exists to cause.
+3. **Value per entrant.** Volume times conversion times average value.
+
+That third number is what reorders everyone's priorities. It routinely reveals that the flow the team spends most of its time on serves a small population, while a high-volume flow nobody has touched in a year is quietly moving far more money.
+
+> The best-optimised flow in the business is usually not the most valuable one. It is the one whose owner enjoys optimising it.
+
+I also look for the flows with high volume and *no* measured conversion at all. Those are pure blind spots, and they are common.
+
+## Day 5 — Rank by leverage, not by effort
+
+I end with one page: every gap and defect, scored on estimated annual value against implementation effort. Nothing more elaborate. Effort in weeks, value in revenue, both explicitly rough.
+
+The output splits into three:
+
+**Fix now.** Broken things carrying real volume. Usually unglamorous — a dead link in a high-traffic flow, a trigger firing on the wrong condition, a missing suppression rule. Days of work, immediate return.
+
+**Build next.** The cliffs from day one, prioritised by the population sitting in them. This is where new campaigns belong, and now they are justified by a number rather than a hunch.
+
+**Stop doing.** The flows consuming team time for negligible value. Killing these is how you fund everything else, and it is the recommendation clients resist most, because someone built them and someone is proud of them.
+
+## Why five days and not five weeks
+
+I have seen these audits run as three-month engagements producing beautiful hundred-page decks. I do not think the extra time adds much. After about a week you have found the big leaks, and the rest is refinement that the first months of execution would have taught you anyway, for free.
+
+The point of the audit is not completeness. It is to make sure the next six weeks of build go into the highest-value gap rather than the most recently requested one.
+
+Almost every time, that turns out to be somewhere nobody was looking. Which is exactly why it was still leaking.
