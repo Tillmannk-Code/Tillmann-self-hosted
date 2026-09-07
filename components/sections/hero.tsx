@@ -4,6 +4,10 @@ import { Cta } from '@/components/cta'
 import { hero, site } from '@/lib/content'
 import { cn } from '@/lib/utils'
 
+// Bold & colorful: the stacked wordmark walks through the accent trio, the
+// final line landing on the magenta lead so the CTA below reads as its echo.
+const ACCENT_CYCLE = ['text-accent-2', 'text-accent-3', 'text-accent']
+
 export function Hero() {
   // pt-16 clears the fixed h-16 header and must stay. The container's own top
   // padding is the actual visual gap, and it can be tighter than the bottom
@@ -12,7 +16,7 @@ export function Hero() {
   return (
     <section className="pt-16">
       <Container className="flex flex-col gap-10 pt-8 pb-16 md:pt-10 md:pb-24">
-        {/* Signature element: the stacked wordmark */}
+        {/* Signature element: the stacked wordmark, each line a different accent */}
         <h1 className="flex flex-col">
           {hero.words.map((word, i) => (
             <span
@@ -21,8 +25,8 @@ export function Hero() {
             >
               <span
                 className={cn(
-                  'display text-[clamp(2.75rem,13vw,11rem)]',
-                  i === hero.words.length - 1 && 'text-accent',
+                  'display text-[clamp(2.75rem,13vw,11rem)] transition-colors',
+                  ACCENT_CYCLE[i % ACCENT_CYCLE.length],
                 )}
               >
                 {word}

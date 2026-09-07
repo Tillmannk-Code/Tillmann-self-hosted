@@ -2,6 +2,9 @@ import { Container } from '@/components/container'
 import { SectionHeading } from '@/components/section-heading'
 import { services } from '@/lib/content'
 
+// Each service gets its own accent from the trio, cycling as the list grows.
+const SERVICE_ACCENTS = ['text-accent', 'text-accent-2', 'text-accent-3']
+
 export function Services() {
   return (
     <section id="services" className="scroll-mt-16 py-20 md:py-28">
@@ -15,7 +18,7 @@ export function Services() {
               className="flex flex-col gap-8 py-12 not-last:rule-b md:flex-row md:gap-16 md:py-16"
             >
               <div className="flex flex-col gap-5 md:w-2/5">
-                <span className="eyebrow text-accent">
+                <span className={`eyebrow ${SERVICE_ACCENTS[i % SERVICE_ACCENTS.length]}`}>
                   S{String(i + 1).padStart(2, '0')}
                 </span>
                 <h3 className="display text-[clamp(1.75rem,4vw,3rem)] text-balance">

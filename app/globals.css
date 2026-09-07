@@ -21,6 +21,8 @@
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-accent-2: var(--accent-2);
+  --color-accent-3: var(--accent-3);
   --color-destructive: var(--destructive);
   --color-border: var(--border);
   --color-input: var(--input);
@@ -37,35 +39,37 @@
 :root {
   color-scheme: dark;
 
-  /* near-black canvas */
-  --background: #08090a;
+  /* deep ink canvas with a faint violet cast so bold accents sit warmer */
+  --background: #0a0912;
   /* raised surface / alternating bands */
-  --surface: #121417;
+  --surface: #14121f;
   /* off-white */
-  --foreground: #f2f4f3;
-  /* signal vermilion red — the only accent */
-  --accent: #ff412e;
-  --accent-foreground: #f2f4f3;
+  --foreground: #f4f2fb;
+  /* bold & colorful trio — electric magenta lead, cyan + amber support */
+  --accent: #ff2d78;
+  --accent-foreground: #0a0912;
+  --accent-2: #22e0d3;
+  --accent-3: #ffb020;
 
-  --card: #121417;
-  --card-foreground: #f2f4f3;
-  --popover: #121417;
-  --popover-foreground: #f2f4f3;
+  --card: #14121f;
+  --card-foreground: #f4f2fb;
+  --popover: #14121f;
+  --popover-foreground: #f4f2fb;
 
-  --primary: #ff412e;
-  --primary-foreground: #f2f4f3;
-  --secondary: #1a1d21;
-  --secondary-foreground: #f2f4f3;
+  --primary: #ff2d78;
+  --primary-foreground: #0a0912;
+  --secondary: #201b30;
+  --secondary-foreground: #f4f2fb;
 
-  --muted: #1a1d21;
-  --muted-foreground: #8a9299;
+  --muted: #201b30;
+  --muted-foreground: #9992ac;
 
-  /* deep crimson so errors stay distinct from the vermilion accent */
-  --destructive: #d61f4b;
+  /* deep crimson so errors stay distinct from the magenta accent */
+  --destructive: #e11d48;
 
-  --border: color-mix(in oklab, #f2f4f3 11%, transparent);
-  --input: color-mix(in oklab, #f2f4f3 16%, transparent);
-  --ring: #ff412e;
+  --border: color-mix(in oklab, #f4f2fb 12%, transparent);
+  --input: color-mix(in oklab, #f4f2fb 16%, transparent);
+  --ring: #ff2d78;
 
   --radius: 0.125rem;
 }
