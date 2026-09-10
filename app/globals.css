@@ -34,6 +34,40 @@
   --radius-3xl: calc(var(--radius) * 2.2);
 }
 
+/*
+ * Registering --accent as a typed <color> lets the browser interpolate it,
+ * so the accent-cycle animation below produces a smooth hue shift instead of
+ * hard color swaps. The initial value is the blue base.
+ */
+@property --accent {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #3b82f6;
+}
+
+/*
+ * The accent drifts through the four signature hues and loops back to blue.
+ * --primary and --ring reference --accent, so buttons, focus rings, selection,
+ * and display type all shift in unison.
+ */
+@keyframes accent-cycle {
+  0% {
+    --accent: #3b82f6;
+  }
+  25% {
+    --accent: #e5484d;
+  }
+  50% {
+    --accent: #ff9e2c;
+  }
+  75% {
+    --accent: #00e08a;
+  }
+  100% {
+    --accent: #3b82f6;
+  }
+}
+
 :root {
   color-scheme: dark;
 
@@ -43,31 +77,31 @@
   --surface: #121417;
   /* off-white */
   --foreground: #f2f4f3;
-  /* teal/cyan — the only accent */
-  --accent: #17c3c9;
-  --accent-foreground: #08090a;
+  /* blue base — animated through the signature hues by accent-cycle */
+  --accent: #3b82f6;
+  --accent-foreground: #f2f4f3;
 
   --card: #121417;
   --card-foreground: #f2f4f3;
   --popover: #121417;
   --popover-foreground: #f2f4f3;
 
-  --primary: #17c3c9;
-  --primary-foreground: #08090a;
+  --primary: var(--accent);
+  --primary-foreground: #f2f4f3;
   --secondary: #1a1d21;
   --secondary-foreground: #f2f4f3;
 
   --muted: #1a1d21;
   --muted-foreground: #8a9299;
 
-  /* deep crimson so errors stay distinct from the vermilion accent */
+  /* deep crimson so errors stay distinct from the accent */
   --destructive: #d61f4b;
 
   --border: color-mix(in oklab, #f2f4f3 11%, transparent);
   --input: color-mix(in oklab, #f2f4f3 16%, transparent);
-  --ring: #17c3c9;
+  --ring: var(--accent);
 
-  --radius: 0.125rem;
+  animation: accent-cycle 24s linear infinite;
 }
 
 @layer base {
