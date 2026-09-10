@@ -19,7 +19,7 @@ export const OG_CONTENT_TYPE = 'image/png'
 /** Mirrors the design tokens in app/globals.css. */
 const INK = '#08090a'
 const PAPER = '#f2f4f3'
-const ACCENT = '#3b82f6'
+const ACCENT = '#17c3c9'
 const MUTED = '#8a9299'
 const HAIRLINE = 'rgba(242, 244, 243, 0.14)'
 
