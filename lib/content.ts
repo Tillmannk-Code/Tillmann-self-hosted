@@ -234,7 +234,7 @@ export const testimonials: Testimonial[] = [
   },
   {
     name: 'Tony Gandía',
-    title: 'Enterprise Transformation Executive',
+    title: 'Vice President, Executive Client Partner',
     location: 'Paris',
     quote:
       'His passion is infectious and his dedication to his clients and team members doesn’t fail. There aren’t any obstacles that Tillmann doesn’t hesitate to remove for his team and his clients. His management style allows for a collaborative and amiable working environment.',
