@@ -43,8 +43,8 @@
   --surface: #121417;
   /* off-white */
   --foreground: #f2f4f3;
-  /* signal vermilion red — the only accent */
-  --accent: #ff412e;
+  /* signal blue — the only accent */
+  --accent: #3b82f6;
   --accent-foreground: #f2f4f3;
 
   --card: #121417;
@@ -52,7 +52,7 @@
   --popover: #121417;
   --popover-foreground: #f2f4f3;
 
-  --primary: #ff412e;
+  --primary: #3b82f6;
   --primary-foreground: #f2f4f3;
   --secondary: #1a1d21;
   --secondary-foreground: #f2f4f3;
@@ -65,7 +65,7 @@
 
   --border: color-mix(in oklab, #f2f4f3 11%, transparent);
   --input: color-mix(in oklab, #f2f4f3 16%, transparent);
-  --ring: #ff412e;
+  --ring: #3b82f6;
 
   --radius: 0.125rem;
 }
