@@ -1,4 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
   <rect width="64" height="64" fill="#08090a"/>
-  <text x="33" y="46" font-family="Geist, ui-sans-serif, system-ui, sans-serif" font-weight="700" font-size="40" letter-spacing="-6" fill="#ff412e" text-anchor="middle">T.</text>
+  <rect x="12" y="10" width="40" height="11" fill="#ff412e"/>
+  <rect x="25.5" y="10" width="13" height="45" fill="#ff412e"/>
+  <circle cx="44" cy="50" r="5" fill="#ff412e"/>
 </svg>
