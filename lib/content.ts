@@ -182,6 +182,7 @@ export const offerings: Offering[] = [
   {
     title: 'AI Empowerment Program',
     body: 'I will help your team to find the right setup to catch-up with productive and owned marketing execution. Powered by proven AI implementation concepts… until speed is back.',
+    link: { label: 'fymos.ai', href: 'https://fymos.ai' },
   },
   {
     title: '1:1 Consultations',
