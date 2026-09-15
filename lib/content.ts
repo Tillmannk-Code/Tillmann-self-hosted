@@ -279,6 +279,55 @@ export const testimonials: Testimonial[] = [
 ]
 
 // ---------------------------------------------------------------------------
+// 08 — FAQ
+//
+// Written as clean question -> answer pairs so answer engines (ChatGPT,
+// Perplexity, Google AI Overviews) can lift them verbatim, and mirrored into
+// FAQPage JSON-LD (lib/schema.ts) + llms.txt. Every answer is grounded in the
+// services / offerings / positioning copy above — no new claims.
+// ---------------------------------------------------------------------------
+
+export type Faq = { question: string; answer: string }
+
+export const faqs: Faq[] = [
+  {
+    question: 'What kind of consultant is Tillmann Kühn?',
+    answer:
+      'Tillmann Kühn is a freelance growth, CRM and analytics consultant based in Berlin, with 15+ years turning data and AI into measurable business impact for both global brands and startups. Engagements span growth leadership, CRM and marketing automation, and dashboards.',
+  },
+  {
+    question: 'What engagement models are available?',
+    answer:
+      'Six ways to work together: interim management, growth consultancy, CRM expertise, tailor-made dashboards, an AI empowerment program for teams, and 1:1 consultations — one-shot or on a regular basis. Engagements can be a defined-period interim role or focused project support.',
+  },
+  {
+    question: 'Should I use Braze or HubSpot for CRM?',
+    answer:
+      'Both are excellent, and the right choice depends on your setup. Tillmann is a certified Braze expert and uses it for data-driven, two-way customer engagement. He values HubSpot for its flexibility, extensive API and knowledge base, especially when the goal is a customer-focused mindset across the whole organization. A CRM audit is the fastest way to decide.',
+  },
+  {
+    question: 'How quickly can a dashboard be built?',
+    answer:
+      'Tailor-made performance, SEO and growth dashboards are built in days, not months — wired to the KPIs that actually move your business. You can keep the code and run it yourself, or have it hosted for you.',
+  },
+  {
+    question: 'Can Tillmann step in as an interim or fractional marketing lead?',
+    answer:
+      'Yes. Interim management is a core offering: stepping in for a defined period with hands-on leadership to stabilize operations, drive key initiatives, deliver measurable results, and ensure a smooth knowledge transfer to your team.',
+  },
+  {
+    question: 'Which languages and locations do you work in?',
+    answer:
+      'Tillmann works in English, French and German, is based in Berlin, Germany, and serves clients across Germany and Europe. He thrives in dynamic, multicultural, remote-friendly environments.',
+  },
+  {
+    question: 'How is AI used in these engagements?',
+    answer:
+      'AI is used to turn data into measurable impact — from AI-driven growth leadership and CRM automation to analytics that ground marketing decisions in evidence. The AI Empowerment Program helps teams find the right setup to catch up on productive, owned marketing execution.',
+  },
+]
+
+// ---------------------------------------------------------------------------
 // 09 — CONTACT
 // ---------------------------------------------------------------------------
 

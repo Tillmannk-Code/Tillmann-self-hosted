@@ -1,4 +1,4 @@
-import { offerings, positioning, services, site } from '@/lib/content'
+import { faqs, offerings, positioning, services, site } from '@/lib/content'
 import type { PostMeta } from '@/lib/post-types'
 
 /**
@@ -69,6 +69,26 @@ export function serviceSchema() {
         },
       })),
     },
+  }
+}
+
+/**
+ * FAQPage — the one schema type answer engines extract most directly. Lives on
+ * the homepage only (where the FAQ is rendered), so it is not in the layout.
+ */
+export function faqSchema() {
+  return {
+    '@type': 'FAQPage',
+    '@id': `${site.url}/#faq`,
+    isPartOf: { '@id': SITE_ID },
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.answer,
+      },
+    })),
   }
 }
 
