@@ -1,5 +1,6 @@
 import {
   contact,
+  faqs,
   offerings,
   positioning,
   projects,
@@ -51,6 +52,11 @@ function buildDoc(): string {
     lines.push(
       `- [${p.title}](${site.url}/blog/${p.slug}) — ${p.topic}, ${p.date}. ${p.excerpt}`,
     )
+  }
+
+  lines.push('', '## FAQ', '')
+  for (const f of faqs) {
+    lines.push(`### ${f.question}`, '', f.answer, '')
   }
 
   lines.push(
