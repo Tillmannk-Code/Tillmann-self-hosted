@@ -37,7 +37,7 @@ export const nav = [
 // ---------------------------------------------------------------------------
 
 export const hero = {
-  words: ['Growth', 'CRM', 'Analytics'],
+  words: ['Growth', 'CRM', 'Dashboards'],
   lede: '15+ years turning data and AI into measurable business impact — for global brands and startups alike.',
 } as const
 
