@@ -4,41 +4,37 @@ import { projects } from '@/lib/content'
 
 export function Projects() {
   return (
-    <section
-      id="work"
-      className="bg-surface rule-t rule-b scroll-mt-16 py-20 md:py-28"
-    >
-      <Container className="flex flex-col gap-10">
-        <SectionHeading number="05" label="Projects I loved" />
+    <section id="work" className="scroll-mt-20 py-20 md:py-28">
+      <Container className="flex flex-col gap-16">
+        <SectionHeading label="Projects I loved" title="Results, not slide decks." />
 
-        <div className="flex flex-col">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
           {projects.map((project) => (
             <article
               key={project.title}
-              className="border-border flex flex-col gap-8 py-12 not-last:border-b lg:flex-row lg:items-start lg:justify-between lg:gap-16 lg:py-14"
+              className="group bg-surface border-foreground/5 hover:border-accent/50 relative flex min-h-[26rem] flex-col justify-between gap-12 overflow-hidden rounded-3xl border p-8 transition-colors duration-500 md:p-10"
             >
-              <div className="flex flex-col gap-4 lg:max-w-2xl">
-                <span className="eyebrow text-accent">
-                  @ {project.client}
-                </span>
-                <h3 className="display text-[clamp(1.625rem,4.2vw,3rem)] text-balance">
-                  {project.title}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed text-pretty">
+              {/* Accent wash that blooms on hover */}
+              <div
+                aria-hidden
+                className="bg-accent/0 group-hover:bg-accent/10 pointer-events-none absolute inset-0 transition-colors duration-500"
+              />
+
+              <div className="relative flex items-center justify-between gap-4">
+                <span className="eyebrow text-muted-foreground">@ {project.client}</span>
+                <span className="eyebrow text-muted-foreground/60">{project.metricLabel}</span>
+              </div>
+
+              <p className="display text-accent glow relative text-[clamp(4.5rem,11vw,9rem)] tabular-nums">
+                {project.metric}
+              </p>
+
+              <div className="relative flex flex-col gap-3">
+                <h3 className="text-2xl font-normal tracking-tight text-balance">{project.title}</h3>
+                <p className="text-muted-foreground max-w-md leading-relaxed text-pretty">
                   {project.body}
                 </p>
               </div>
-
-              {project.metric ? (
-                <div className="flex shrink-0 flex-col gap-3 lg:items-end lg:text-right">
-                  <span className="text-accent text-[clamp(3rem,8.5vw,6.5rem)] leading-none font-bold tracking-tighter">
-                    {project.metric}
-                  </span>
-                  <span className="eyebrow text-muted-foreground">
-                    {project.metricLabel}
-                  </span>
-                </div>
-              ) : null}
             </article>
           ))}
         </div>

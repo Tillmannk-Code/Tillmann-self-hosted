@@ -81,6 +81,9 @@ export const clients = [
 // ---------------------------------------------------------------------------
 
 export const positioning = {
+  /** Short, scroll-lit version shown on the homepage. */
+  headline:
+    'Fifteen years turning data and AI into growth you can see in the numbers — for startups and global brands alike.',
   statement:
     'With over 15 years of experience fueling growth for startups and global brands alike, I specialize in harnessing data and AI to deliver measurable business impact, optimize marketing investments, and align campaigns with strategic goals for rapid, tangible results.',
   facts: [
@@ -98,18 +101,27 @@ export const services = [
   {
     id: 'growth-leadership',
     title: 'AI driven Growth Leadership',
+    summary:
+      'High-performing teams, integrated campaigns and budgets that pull in the same direction as the business.',
+    image: '/images/chapter-growth.png',
     body: 'Scaling brands, I excel at building high-performing teams to drive growth across markets and channels. My leadership blends strategic vision, data-driven decisions, and hands-on execution to align campaigns with business goals. I have a proven track record in executing integrated campaigns, CRM automation, engagement, and budget optimization. Known for a customer-centric approach, I inspire innovation and deliver measurable results in market expansion, retention, and rebranding. Fluent in English, French, and German, I thrive in dynamic, multicultural environments, driving business transformation through marketing.',
     tags: ['Team building', 'Integrated campaigns', 'Budget optimization'],
   },
   {
     id: 'crm-automation',
     title: 'CRM + Automation',
+    summary:
+      'Certified Braze expert and HubSpot advocate — lifecycle flows that turn customers into conversations.',
+    image: '/images/chapter-crm.png',
     body: 'I specialize in maximizing customer lifecycle value by connecting the dots across your CRM ecosystem, from analyzing performance across channels to defining strategic action points and executing customer-centric campaigns. Whether you need a comprehensive data driven CRM strategy or hands-on support with day-to-day optimization, I bring a deep understanding of how to drive results across all touchpoints.\n\nAs a certified Braze expert, I’ve successfully implemented multiple CRM frameworks tailored to business needs. I value HubSpot for its unmatched flexibility, extensive API capabilities, and powerful knowledge base—all built around a core vision of fostering a truly customer-focused mindset across the organization. I also enjoy working with Braze to create meaningful, data-driven engagement and build real, two-way conversations with customers.',
     tags: ['Braze', 'HubSpot', 'Lifecycle value'],
   },
   {
     id: 'data-analytics',
     title: 'Data + Analytics',
+    summary:
+      'From KPI design to live dashboards — so every marketing decision is grounded in evidence.',
+    image: '/images/chapter-data.png',
     body: 'I leverage advanced analytics and reporting to unlock actionable insights and inform smarter marketing decisions. Skilled in translating complex data into clear, impactful dashboards, I empower teams to monitor campaign performance in real-time and identify opportunities for optimization. My experience spans end-to-end measurement, from defining relevant KPIs to automating reports and uncovering trends that drive business growth. With a deep understanding of AI-driven tools and data ecosystems, I ensure marketing initiatives are grounded in evidence, fostering continuous improvement and delivering measurable impact.',
     tags: ['KPI design', 'Dashboards', 'Automated reporting'],
   },
