@@ -71,10 +71,10 @@
 :root {
   color-scheme: dark;
 
-  /* near-black canvas */
-  --background: #08090a;
-  /* raised surface / alternating bands */
-  --surface: #121417;
+  /* true-black canvas so the light-painting imagery bleeds into the page */
+  --background: #030304;
+  /* raised surface / cards */
+  --surface: #0d0e10;
   /* off-white */
   --foreground: #f2f4f3;
   /* blue base — animated through the signature hues by accent-cycle */
@@ -130,13 +130,12 @@
  * conflicting with text-color / text-size utilities and drop one of them.
  */
 
-/* Oversized display type: tight, geometric, brutal at scale */
+/* Oversized display type: light weight, mixed case, cinematic at scale */
 @utility display {
   font-family: var(--font-sans);
-  font-weight: 700;
-  line-height: 0.88;
-  letter-spacing: -0.04em;
-  text-transform: uppercase;
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
 }
 
 /* Mono eyebrow / metadata label */
@@ -205,7 +204,102 @@
   );
 }
 
+/* One staggered entrance for the hero; delay is set per element via --d. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.35em);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+@utility rise {
+  animation: rise 1.1s cubic-bezier(0.2, 0.7, 0.1, 1) both;
+  animation-delay: var(--d, 0ms);
+}
+
+/* Soft accent glow used behind metrics and on hover states. */
+@utility glow {
+  text-shadow: 0 0 40px color-mix(in oklab, var(--accent) 55%, transparent);
+}
+
+/*
+ * Scroll-driven effects. Wrapped in @supports so browsers without
+ * animation-timeline simply show the final, fully visible state.
+ */
+@keyframes hero-drift {
+  to {
+    transform: scale(1.18) translateY(6%);
+    opacity: 0.25;
+  }
+}
+
+@keyframes hero-lift {
+  to {
+    transform: translateY(-18%);
+    opacity: 0;
+  }
+}
+
+@keyframes word-light {
+  from {
+    opacity: 0.14;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes frame-in {
+  from {
+    clip-path: inset(12% 8% 12% 8% round 2rem);
+    transform: scale(1.12);
+  }
+  to {
+    clip-path: inset(0 0 0 0 round 1.5rem);
+    transform: scale(1);
+  }
+}
+
+@supports (animation-timeline: scroll()) {
+  .scroll-hero-media {
+    animation: hero-drift linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 100vh;
+  }
+
+  .scroll-hero-copy {
+    animation: hero-lift linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 90vh;
+  }
+
+  .scroll-word {
+    animation: word-light linear both;
+    animation-timeline: view();
+    animation-range: entry 60% cover 45%;
+  }
+
+  .scroll-frame {
+    animation: frame-in linear both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 40%;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .scroll-hero-media,
+  .scroll-hero-copy,
+  .scroll-word,
+  .scroll-frame {
+    animation: none !important;
+  }
+
   *,
   *::before,
   *::after {

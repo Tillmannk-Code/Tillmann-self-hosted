@@ -11,9 +11,9 @@ export function SiteNav() {
   const [open, setOpen] = useState(false)
 
   return (
-    <header className="bg-background/80 rule-b fixed inset-x-0 top-0 z-50 backdrop-blur-md">
+    <header className="from-background/90 fixed inset-x-0 top-0 z-50 bg-gradient-to-b to-transparent backdrop-blur-[2px]">
       <Container>
-        <div className="flex h-16 items-center justify-between gap-6">
+        <div className="flex h-20 items-center justify-between gap-6">
           <Link
             href="/"
             className="flex items-baseline gap-2"
@@ -28,7 +28,10 @@ export function SiteNav() {
             />
           </Link>
 
-          <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
+          <nav
+            aria-label="Main"
+            className="border-foreground/10 bg-background/40 hidden items-center gap-8 rounded-full border px-7 py-3 backdrop-blur-md md:flex"
+          >
             {nav.map((item) => (
               <Link
                 key={item.href}
@@ -62,14 +65,14 @@ export function SiteNav() {
       </Container>
 
       {open ? (
-        <div id="mobile-nav" className="rule-t bg-background md:hidden">
+        <div id="mobile-nav" className="bg-background h-[calc(100svh-5rem)] md:hidden">
           <Container className="flex flex-col gap-1 py-6">
             {nav.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="text-foreground border-border/60 border-b py-4 text-2xl font-bold tracking-tight"
+                className="display text-foreground border-border/60 border-b py-5 text-4xl"
               >
                 {item.label}
               </Link>
