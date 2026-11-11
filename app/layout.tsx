@@ -1,4 +1,5 @@
 import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { Metadata, Viewport } from 'next'
 import { Geist, JetBrains_Mono } from 'next/font/google'
 import { ChatWidget } from '@/components/chat/chat-widget'
@@ -115,6 +116,7 @@ export default function RootLayout({
           which loads the tag only after an explicit opt-in.
         */}
         {process.env.NODE_ENV === 'production' && <Analytics />}
+        {process.env.NODE_ENV === 'production' && <SpeedInsights />}
         <ConsentManager />
         <ChatWidget />
       </body>
