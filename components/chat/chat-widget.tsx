@@ -17,10 +17,11 @@ import {
   writeIdentity,
   writeToken,
 } from '@/lib/chat/client'
-import { LIMITS } from '@/lib/chat/limits'
+import { isValidEmail, LIMITS } from '@/lib/chat/limits'
 import { site } from '@/lib/content'
 import { cn } from '@/lib/utils'
 
+const EMAIL_ERROR = 'Please enter a valid email so I can reply.'
 const POLL_OPEN_MS = 4000
 const POLL_CLOSED_MS = 25000
 
@@ -42,6 +43,7 @@ export function ChatWidget() {
   const scrollRef = useRef<HTMLDivElement>(null)
   const draftRef = useRef<HTMLTextAreaElement>(null)
   const emailRef = useRef<HTMLInputElement>(null)
+  const nameRef = useRef<HTMLInputElement>(null)
   // The timestamp of the newest message we've stored, used as the poll cursor.
   const cursorRef = useRef<string | null>(null)
 
@@ -153,7 +155,7 @@ export function ChatWidget() {
     if (!open) return
     const t = window.setTimeout(() => {
       if (started) draftRef.current?.focus()
-      else emailRef.current?.focus()
+      else nameRef.current?.focus()
     }, 50)
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setOpen(false)
@@ -169,10 +171,21 @@ export function ChatWidget() {
     const message = draft.trim()
     if (!message || sending) return
 
-    if (!started && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.trim())) {
-      setError('Please enter a valid email so I can reply.')
-      emailRef.current?.focus()
-      return
+    let email = emailInput.trim()
+    let name = nameInput.trim()
+
+    if (!started && !isValidEmail(email)) {
+      // Visitors sometimes type their name and email into the wrong boxes.
+      // If the name field holds a valid email, just swap them.
+      if (isValidEmail(name)) {
+        ;[email, name] = [name, email]
+        setEmailInput(email)
+        setNameInput(name)
+      } else {
+        setError(EMAIL_ERROR)
+        emailRef.current?.focus()
+        return
+      }
     }
 
     setSending(true)
@@ -190,8 +203,8 @@ export function ChatWidget() {
 
     const result = await sendMessage({
       token,
-      email: started ? undefined : emailInput.trim(),
-      name: started ? undefined : nameInput.trim() || undefined,
+      email: started ? undefined : email,
+      name: started ? undefined : name || undefined,
       message,
     })
 
@@ -210,8 +223,8 @@ export function ChatWidget() {
       setToken(result.token)
       writeToken(result.token)
       const id: Identity = {
-        email: emailInput.trim(),
-        name: nameInput.trim() || null,
+        email,
+        name: name || null,
       }
       setIdentity(id)
       writeIdentity(id)
@@ -341,29 +354,44 @@ export function ChatWidget() {
           <div className="rule-t flex flex-col gap-2 px-4 py-3">
             {!started && (
               <div className="flex flex-col gap-2">
-                <input
-                  ref={emailRef}
-                  type="email"
-                  inputMode="email"
-                  autoComplete="email"
-                  required
-                  maxLength={LIMITS.email}
-                  value={emailInput}
-                  onChange={(e) => setEmailInput(e.target.value)}
-                  placeholder="Your email (required)"
-                  aria-label="Your email"
-                  className="bg-background border-input focus:border-ring w-full border px-3 py-2 text-sm outline-none"
-                />
-                <input
-                  type="text"
-                  autoComplete="name"
-                  maxLength={LIMITS.name}
-                  value={nameInput}
-                  onChange={(e) => setNameInput(e.target.value)}
-                  placeholder="Your name (optional)"
-                  aria-label="Your name"
-                  className="bg-background border-input focus:border-ring w-full border px-3 py-2 text-sm outline-none"
-                />
+                <label className="flex flex-col gap-1">
+                  <span className="eyebrow text-muted-foreground">
+                    Name (optional)
+                  </span>
+                  <input
+                    ref={nameRef}
+                    type="text"
+                    name="name"
+                    autoComplete="name"
+                    maxLength={LIMITS.name}
+                    value={nameInput}
+                    onChange={(e) => setNameInput(e.target.value)}
+                    placeholder="Jane Doe"
+                    className="bg-background border-input focus:border-ring w-full border px-3 py-2 text-sm outline-none"
+                  />
+                </label>
+                <label className="flex flex-col gap-1">
+                  <span className="eyebrow text-muted-foreground">
+                    Email (required)
+                  </span>
+                  <input
+                    ref={emailRef}
+                    type="email"
+                    name="email"
+                    inputMode="email"
+                    autoComplete="email"
+                    required
+                    maxLength={LIMITS.email}
+                    value={emailInput}
+                    onChange={(e) => {
+                      setEmailInput(e.target.value)
+                      if (error === EMAIL_ERROR) setError(null)
+                    }}
+                    placeholder="you@company.com"
+                    aria-invalid={error === EMAIL_ERROR || undefined}
+                    className="bg-background border-input focus:border-ring aria-[invalid=true]:border-destructive w-full border px-3 py-2 text-sm outline-none"
+                  />
+                </label>
               </div>
             )}
 
