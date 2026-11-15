@@ -9,7 +9,7 @@ export function Contact() {
     <section id="contact" className="scroll-mt-20 px-4 py-20 md:px-6 md:py-28">
       <div className="relative isolate overflow-hidden rounded-[2rem] md:rounded-[2.5rem]">
         <Image
-          src="/images/hero-signal-kendo.png"
+          src="/images/hero-signal.png"
           alt=""
           fill
           sizes="100vw"
