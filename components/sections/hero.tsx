@@ -12,12 +12,12 @@ export function Hero() {
       {/* Signature element: the cinematic light-painting plate */}
       <div aria-hidden className="scroll-hero-media absolute inset-0 -z-10 origin-center">
         <Image
-          src="/images/hero-signal.png"
+          src="/images/hero-signal-kendo.png"
           alt=""
           fill
           priority
           sizes="100vw"
-          className="object-cover object-[70%_center]"
+          className="object-cover object-[80%_center]"
         />
         <div className="from-background via-background/60 absolute inset-0 bg-gradient-to-t to-transparent" />
         <div className="from-background/80 absolute inset-0 bg-gradient-to-r via-transparent to-transparent" />
